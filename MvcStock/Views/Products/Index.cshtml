@@ -1,0 +1,48 @@
+﻿@model List<MvcStock.Models.Entity.TblProduct>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+    int count = 0;
+}
+
+<table id="tbl1" class="table table-bordered">
+    <thead>
+        <tr>
+            <th>#</th>
+            @*<th>Kategori</th>*@
+            <th>Ürün Adı</th>
+            <th>Marka</th>
+            <th>Fiyat</th>
+            <th>Stok</th>
+            <th>Sil</th>
+            <th>Güncelle</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var products in Model)
+        {
+            count++;
+            <tr>
+                <th>@count</th>
+                @*<th>@products.TblCategory.CategoryName</th>*@
+                <td>@products.ProductName</td>
+                <td>@products.ProductBrand</td>
+                <td>@products.ProductStock</td>
+                <td>@products.ProductPrice</td>
+                <td><a href="/Products/DeleteProduct/@products.ProductID" class="btn btn-danger">Sil</a></td>
+                <td><a href="/Products/UpdateProduct/@products.ProductID" class="btn btn-success">Güncelle</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="/Products/AddProduct/" class="btn btn-primary">Yeni Ürün Ekle</a>
+
+<script type="text/javascript" src="https://cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js"></script>
+
+<link href="~/Content/DataTables/css/dataTables.bootstrap4.css" rel="stylesheet" />
+
+<script>
+    $('#tbl1').DataTable();
+</script>

@@ -1,0 +1,19 @@
+﻿@model MvcStock.Models.Entity.TblCustomer
+
+@{
+    ViewBag.Title = "UpdateCustomer";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<form method="post">
+    @Html.HiddenFor(c => c.CustomerID)
+    <label>Müşteri Adı</label>
+    @Html.TextBoxFor(c => c.CustomerName, new { @class = "form-control" })
+    <br />
+
+    <label>Müşteri Soyadı</label>
+    @Html.TextBoxFor(c => c.CustomerSurname, new { @class = "form-control" })
+    <br />
+
+    <button class="btn btn-primary">Müşteriyi Güncelle</button>
+</form>

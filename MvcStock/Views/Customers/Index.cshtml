@@ -1,0 +1,42 @@
+﻿@model List<MvcStock.Models.Entity.TblCustomer>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+    int count = 0;
+}
+
+@using (Html.BeginForm("Index", "Customers", FormMethod.Get))
+{
+    <p>
+        Aranacak Müşteri Adı: @Html.TextBox("p")
+        <input type="submit" value="Ara" />
+    </p>
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>Müşteri Adı</th>
+        <th>Müşteri Soyadı</th>
+        <th>Sil</th>
+        <th>Güncelle</th>
+        <th>Alert</th>
+    </tr>
+    <tbody>
+        @foreach (var customers in Model)
+        {
+            count++;
+            <tr>
+                <th>@count</th>
+                <td>@customers.CustomerName</td>
+                <td>@customers.CustomerSurname</td>
+                <td><a href="/Customers/DeleteCustomer/@customers.CustomerID" class="btn btn-danger">Sil</a></td>
+                <td><a href="/Customers/UpdateCustomer/@customers.CustomerID" class="btn btn-success">Güncelle</a></td>
+                <td>@Html.ActionLink("Sil Butonu", "DeleteCustomer", new { id = customers.CustomerID }, new { @class = "btn btn-warning", onclick = "return confirm('Gerçekten Silmek İstiyor Musunuz?')" })</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="/Customers/AddCustomer/" class="btn btn-primary">Yeni Müşteri Ekle</a>

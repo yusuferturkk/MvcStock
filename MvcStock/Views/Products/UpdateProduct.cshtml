@@ -1,0 +1,33 @@
+﻿@model MvcStock.Models.Entity.TblProduct
+
+@{
+    ViewBag.Title = "UpdateProduct";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<form method="post">
+    @Html.HiddenFor(p => p.ProductID)
+
+    <lable>Kategori ID</lable>
+    @Html.DropDownListFor(p => p.TblCategory.CategoryID, (List<SelectListItem>)ViewBag.value, new { @class = "form-control" })
+    @*@Html.TextBoxFor(p => p.CategoryID, new { @class = "form-control" })*@
+    <br />
+
+    <label>Ürün Adı</label>
+    @Html.TextBoxFor(p => p.ProductName, new { @class = "form-control" })
+    <br />
+
+    <label>Marka</label>
+    @Html.TextBoxFor(p => p.ProductBrand, new { @class = "form-control" })
+    <br />
+
+    <label>Stok</label>
+    @Html.TextBoxFor(p => p.ProductStock, new { @class = "form-control" })
+    <br />
+
+    <label>Fiyat</label>
+    @Html.TextBoxFor(p => p.ProductPrice, new { @class = "form-control" })
+    <br />
+
+    <button class="btn btn-primary">Ürünü Güncelle</button>
+</form>
